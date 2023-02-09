@@ -1,0 +1,20 @@
+[project]
+name = "game"
+version = "0.1.0"
+dependencies = [
+    "pyxel>=1.9.12",
+]
+
+[project.optional-dependencies]
+dev = [
+    "mypy>=1.0.0",
+    "flake8>=6.0.0",
+    "black>=23.1.0",
+]
+
+[tool.black]
+exclude = '''
+/(
+  | .venv
+)/
+'''
