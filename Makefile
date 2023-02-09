@@ -1,4 +1,6 @@
 # Makefile
+venv_bin := .venv/bin/
+
 all: help
 
 .PHONY: init
@@ -16,17 +18,17 @@ setup-venv:
 
 .PHONY: install-deps
 install-deps:
-	pip-sync requirements/requirements.txt
+	$(venv_bin)pip-sync requirements/requirements.txt
 
 .PHONY: install-dev-deps
 install-dev-deps:
-	pip-sync requirements/dev-requirements.txt
+	$(venv_bin)pip-sync requirements/dev-requirements.txt
 
 requirements.txt:
-	pip-compile --generate-hashes --resolver=backtracking -o requirements/requirements.txt pyproject.toml
+	$(venv_bin)pip-compile --generate-hashes --resolver=backtracking -o requirements/requirements.txt pyproject.toml
 
 dev-requirements.txt:
-	pip-compile --generate-hashes --resolver=backtracking --extra dev -o requirements/dev-requirements.txt pyproject.toml
+	$(venv_bin)pip-compile --generate-hashes --resolver=backtracking --extra dev -o requirements/dev-requirements.txt pyproject.toml
 
 .PHONY: lint
 lint:

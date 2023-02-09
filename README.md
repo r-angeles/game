@@ -4,22 +4,9 @@
 
 ### Make
 (Note: Makefile is not supported on Windows)
-For setting up virtual environment and dependencies:
-```
-make init
-```
+To set up a virtual environment and install dependencies, enter `make init` on the command line
 
-To see list of make commands, invoke:
-```
-make help
-```
+For a list of make commands, invoke `make` or `make help`
+
 ### venv
 Python's built-in `venv` will be used to create a virtual environment
-
-### Installing dependencies
-Important: The virtual environment must be activated if installing dependencies to avoid possible installation conflicts with other Python versions and packages.
-
-Linux/MacOS:
-```
-source .venv/bin/activate
-```
