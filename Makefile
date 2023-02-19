@@ -12,7 +12,7 @@ lock: requirements.txt dev-requirements.txt
 .PHONY: setup-venv
 setup-venv:
 	python3 -m venv .venv \
-	&& source .venv/bin/activate \
+	&& source $(venv_bin)activate \
 	&& pip install --upgrade pip \
 	&& pip install pip-tools
 
@@ -30,6 +30,12 @@ requirements.txt:
 dev-requirements.txt:
 	$(venv_bin)pip-compile --generate-hashes --resolver=backtracking --extra dev -o requirements/dev-requirements.txt pyproject.toml
 
+.PHONY: run-game
+run-game:
+	source $(venv_bin)activate \
+	&& cd game \
+	&& pyxel run main.py
+
 .PHONY: lint
 lint:
 	flake8
@@ -46,6 +52,7 @@ help:
 	@echo "Use \`make <target>' where <target> is one of"
 	@echo "  init                       - setup a venv and install dependencies for dev"
 	@echo "  lock                       - lock/freeze all dependencies stored in pyproject.toml"
+	@echo "  run-game                   - run pyxel game"
 	@echo "  lint                       - check style using flake8"
 	@echo "  type                       - run static type check using mypy"
 	@echo "  format                     - format code using black"
